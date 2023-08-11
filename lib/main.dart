@@ -5,10 +5,12 @@ import 'package:tugas1/screen/recipe_screen.dart';
 import 'bloc/recipe_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => RecipeBloc(),
-        child: RecipeScreen(),
+        child: const RecipeScreen(),
       ),
     );
   }

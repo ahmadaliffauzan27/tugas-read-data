@@ -8,6 +8,7 @@ class RecipeScreen extends StatefulWidget {
   const RecipeScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _RecipeScreenState createState() => _RecipeScreenState();
 }
 
@@ -15,19 +16,19 @@ class _RecipeScreenState extends State<RecipeScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<RecipeBloc>(context).add(FetchRecipes('beef'));
+    BlocProvider.of<RecipeBloc>(context).add(const FetchRecipes('beef'));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recipe App'),
+        title: const Text('Recipes App'),
       ),
       body: BlocBuilder<RecipeBloc, RecipeState>(
         builder: (context, state) {
           if (state is RecipeInitial) {
-            return CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           } else if (state is RecipeLoaded) {
             final recipes = state.recipes;
 
@@ -42,12 +43,12 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 },
               );
             } else {
-              return Center(child: Text('No recipes available.'));
+              return const Center(child: Text('No recipes available.'));
             }
           } else if (state is RecipeError) {
             return Center(child: Text(state.message));
           }
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         },
       ),
     );
