@@ -37,8 +37,33 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 itemCount: recipes.length,
                 itemBuilder: (context, index) {
                   final recipe = recipes[index];
-                  return ListTile(
-                    title: Text(recipe.strMeal),
+                  return Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 10,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: ListTile(
+                        leading: recipe.strMealThumb.isNotEmpty
+                            ? CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    NetworkImage(recipe.strMealThumb),
+                              )
+                            : null,
+                        title: Text(recipe.strMeal),
+                      ),
+                    ),
                   );
                 },
               );
